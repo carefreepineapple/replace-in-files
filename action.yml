@@ -1,0 +1,36 @@
+name: "Replace Strings in Files"
+description: "Replace strings in files using Python script"
+
+inputs:
+  pattern:
+    description: "Regex pattern to match files"
+    required: true
+    default: ""
+  directory:
+    description: "Directory to search for files"
+    required: true
+    default: ""
+  replacements_json:
+    description: "JSON array containing replacements"
+    required: true
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.x"
+
+    - name: Run Python script
+      shell: bash
+      run: |
+        python replace.py
+      env:
+        pattern: ${{ inputs.pattern }}
+        directory: ${{ inputs.directory }}
+        replacements_json: ${{ inputs.replacements_json }}

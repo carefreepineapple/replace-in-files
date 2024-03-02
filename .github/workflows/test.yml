@@ -1,0 +1,30 @@
+on:
+  push:
+     branches:
+     - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@master
+      - name: Setup files
+        run: |
+          mkdir -p ${{ github.workspace }}/testfolder1/testfolder2
+          touch ${{ github.workspace }}/test.file ${{ github.workspace }}/test2.file ${{ github.workspace }}/testfolder1/test3.file ${{ github.workspace }}/testfolder1/testfolder2/test4.file
+          echo "old_string" > ${{ github.workspace }}/test.file 2&1>/dev/null
+          echo "old_string2" > ${{ github.workspace }}/test2.file 2&1>/dev/null
+          echo "old_string3" > ${{ github.workspace }}/testfolder1/test3.file 2&1>/dev/null
+          echo "old_string" > ${{ github.workspace }}/testfolder1/testfolder2/test4.file 2&1>/dev/null
+          echo "test.file: $(cat ${{ github.workspace }}/test.file)"
+          echo "test2.file: $(cat ${{ github.workspace }}/test2.file)"
+          echo "test3.file: $(cat ${{ github.workspace }}/testfolder1/test3.file)"
+          echo "test4.file: $(cat ${{ github.workspace }}/testfolder1/testfolder2/test4.file)"
+        shell: bash
+      - name: replacing strings
+        uses: carefreepineapple/replace-in-files@main
+        with:
+          directory: '/home/ansible'
+          pattern: '(.*\/)*test(\d)*\.file'
+          replacements_json: '[{"regex":"^old\\_word$","replacement":"new_word"}]'
