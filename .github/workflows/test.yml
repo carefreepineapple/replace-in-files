@@ -28,3 +28,9 @@ jobs:
           directory: '/home/ansible'
           pattern: '(.*\/)*test(\d)*\.file'
           replacements_json: '[{"regex":"^old\\_word$","replacement":"new_word"}]'
+      - name: Confirm changes
+        run: |
+          echo "test.file: $(cat ${{ github.workspace }}/test.file)"
+          echo "test2.file: $(cat ${{ github.workspace }}/test2.file)"
+          echo "test3.file: $(cat ${{ github.workspace }}/testfolder1/test3.file)"
+          echo "test4.file: $(cat ${{ github.workspace }}/testfolder1/testfolder2/test4.file)"
