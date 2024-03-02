@@ -29,7 +29,8 @@ runs:
     - name: Run Python script
       shell: bash
       run: |
-        python src/replace.py
+        python src/replace.py | tee output.log
+        cat output.log
       env:
         pattern: ${{ inputs.pattern }}
         directory: ${{ inputs.directory }}
