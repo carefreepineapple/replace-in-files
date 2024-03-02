@@ -13,10 +13,10 @@ jobs:
         run: |
           mkdir -p ${{ github.workspace }}/testfolder1/testfolder2
           touch ${{ github.workspace }}/test.file ${{ github.workspace }}/test2.file ${{ github.workspace }}/testfolder1/test3.file ${{ github.workspace }}/testfolder1/testfolder2/test4.file
-          echo "old_string" > ${{ github.workspace }}/test.file 2>&1 /dev/null
-          echo "old_string2" > ${{ github.workspace }}/test2.file 2>&1 /dev/null
-          echo "old_string3" > ${{ github.workspace }}/testfolder1/test3.file 2>&1 /dev/null
-          echo "old_string" > ${{ github.workspace }}/testfolder1/testfolder2/test4.file 2>&1 /dev/null
+          echo "old_string" > ${{ github.workspace }}/test.file > /dev/null 2>&1
+          echo "old_string2" > ${{ github.workspace }}/test2.file > /dev/null 2>&1
+          echo "old_string3" > ${{ github.workspace }}/testfolder1/test3.file > /dev/null 2>&1
+          echo "old_string" > ${{ github.workspace }}/testfolder1/testfolder2/test4.file > /dev/null 2>&1
           echo "test.file: $(cat ${{ github.workspace }}/test.file)"
           echo "test2.file: $(cat ${{ github.workspace }}/test2.file)"
           echo "test3.file: $(cat ${{ github.workspace }}/testfolder1/test3.file)"
