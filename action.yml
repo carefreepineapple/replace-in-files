@@ -29,7 +29,7 @@ runs:
     - name: Run Python script
       shell: bash
       run: |
-        python replace.py
+        python src/replace.py
       env:
         pattern: ${{ inputs.pattern }}
         directory: ${{ inputs.directory }}
