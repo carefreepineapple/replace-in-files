@@ -10,6 +10,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@master
       - name: Setup files
+        id: setup
         run: |
           mkdir -p ${{ github.workspace }}/testfolder1/testfolder2
           touch ${{ github.workspace }}/test.file ${{ github.workspace }}/test2.file ${{ github.workspace }}/testfolder1/test3.file ${{ github.workspace }}/testfolder1/testfolder2/test4.file
@@ -23,12 +24,15 @@ jobs:
           echo "test4.file: $(cat ${{ github.workspace }}/testfolder1/testfolder2/test4.file)"
         shell: bash
       - name: replacing strings
+        id: replace
+        if: steps.setup.outcome == 'success'
         uses: carefreepineapple/replace-in-files@main
         with:
           directory: '/home/ansible'
           pattern: '(.*\/)*test(\d)*\.file'
           replacements_json: '[{"regex":"^old\\_word$","replacement":"new_word"}]'
       - name: Confirm changes
+        if: steps.replace.outcome == 'success'
         run: |
           echo "test.file: $(cat ${{ github.workspace }}/test.file)"
           echo "test2.file: $(cat ${{ github.workspace }}/test2.file)"
