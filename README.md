@@ -15,3 +15,6 @@ github action to replace multiple strings within files using regex.
             {"regex": "file \\d+", "replacement": "file new number"}
         ]
 ```
+
+# Example workflow
+this repo uses an example workflow. https://github.com/carefreepineapple/replace-in-files/actions
