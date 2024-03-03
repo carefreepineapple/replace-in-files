@@ -22,6 +22,8 @@ def main():
         for file_name in os.listdir(directory):
             if re.match(file_pattern, file_name):
                 file_path = os.path.join(directory, file_name)
+                print(f"File matched: {file_path}")
+
                 if debug_mode:
                     print(f"Original contents of: {file_name}:")
                     with open(file_path, 'r') as f:
