@@ -39,8 +39,7 @@ def main():
                         replacement = rep.get('replacement')
                         if regex and replacement:
                             updated_content, num_replacements = re.subn(regex, replacement, content)
-                            if num_replacements > 0 and not debug_mode:
-                                print(f"Content found and replaced in {file_name}")
+                            if num_replacements > 0:
                                 replaced = True
                             content = updated_content
 
@@ -49,6 +48,8 @@ def main():
                         print(content)
 
                     if not debug_mode and replaced:
+                        print(f"Content found and replaced in {file_name}")
+
                         with open(file_path, 'w') as f:
                             f.write(content)
                 else:
