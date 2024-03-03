@@ -11,6 +11,7 @@ def main():
     print(f"Directory: {directory}")
     print(f"File Pattern: {file_pattern}")
     print(f"Replacements JSON: {replacements_json}")
+    print(f"Debug Mode: {debug_mode}")
 
     try:
         if replacements_json:
@@ -39,6 +40,7 @@ def main():
                         replacement = rep.get('replacement')
                         if regex and replacement:
                             replaced_content, num_replacements = re.subn(regex, replacement, content)
+                            print(f"Number of replacements in {file_name}: {num_replacements}")
                             if num_replacements > 0:  # Check if any replacements were made
                                 content_replaced = True
                                 content = replaced_content
