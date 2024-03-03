@@ -11,6 +11,10 @@ inputs:
   file_pattern:
     description: 'Regular expression pattern for matching files'
     required: true
+  debug:
+    description: 'Enable debug mode to print original and modified contents of files'
+    required: false
+    default: false
 runs:
   using: 'composite'
   steps:
@@ -24,6 +28,7 @@ runs:
         DIRECTORY: ${{ inputs.directory }}
         REPLACEMENTS_JSON: ${{ inputs.replacements_json }}
         FILE_PATTERN: ${{ inputs.file_pattern }}
+        DEBUG: ${{ inputs.debug }}
       run: |
         echo "$REPLACEMENTS_JSON" > replacements.json
         python $GITHUB_ACTION_PATH/main.py
