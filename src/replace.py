@@ -13,7 +13,7 @@ def find_and_replace_files():
         for file in files:
             file_path = os.path.join(root, file)
             if re.search(pattern, file_path):
-                print("File found:", file_path)
+                print(f"File found:", file_path)
                 with open(file_path, 'r') as f:
                     content = f.read()
                 replaced = False
@@ -22,14 +22,15 @@ def find_and_replace_files():
                     if match:
                         replaced = True
                         matched_string = match.group()
-                        print("Matched regex:", matched_string)
+                        print(f"Matched regex:", matched_string)
                         replacement = rep['replacement']
-                        print("Replacement string:", replacement)
+                        print(f"Replacement string:", replacement)
                         content = re.sub(rep['regex'], replacement, content)
                 if not replaced:
-                    print("No regex matches found.")
+                    print(f"No regex matches found.")
                 with open(file_path, 'w') as f:
                     f.write(content)
 
 # Execute the function
-find_and_replace_files()
+if __name__ == "__main__":
+    find_and_replace_files()
