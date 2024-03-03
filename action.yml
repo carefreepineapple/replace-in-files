@@ -1,37 +1,30 @@
-name: "Replace Strings in Files"
-description: "Replace strings in files using Python script"
-
+name: 'Custom Python Search and Replace'
+description: 'Performs search and replace operations in files using Python'
+author: 'Your Name'
 inputs:
-  pattern:
-    description: "Regex pattern to match files"
-    required: true
-    default: ""
   directory:
-    description: "Directory to search for files"
+    description: 'The directory to search for test files'
     required: true
-    default: ""
   replacements_json:
-    description: "JSON array containing replacements"
+    description: 'A JSON array containing replacements'
+    required: false
+  file_pattern:
+    description: 'Regular expression pattern for matching files'
     required: true
-    default: ""
-
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: "3.x"
 
-    - name: Run Python script
-      shell: bash
-      run: |
-        python src/replace.py | tee output.log
-        cat output.log
+    - name: Set environment variables and run Python script
       env:
-        pattern: ${{ inputs.pattern }}
-        directory: ${{ inputs.directory }}
-        replacements_json: ${{ inputs.replacements_json }}
+        DIRECTORY: ${{ inputs.directory }}
+        REPLACEMENTS_JSON: ${{ inputs.replacements_json }}
+        FILE_PATTERN: ${{ inputs.file_pattern }}
+      run: |
+        echo "$REPLACEMENTS_JSON" > replacements.json
+        python $GITHUB_ACTION_PATH/main.py
+      shell: bash

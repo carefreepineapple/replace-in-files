@@ -1,40 +1,33 @@
+name: Search and Replace Workflow
+
 on:
   push:
      branches:
      - main
 
 jobs:
-  deploy:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: Search and Replace Job
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@master
-      - name: Setup files
-        id: setup
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Create Test Files
         run: |
-          mkdir -p ${{ github.workspace }}/testfolder1/testfolder2
-          touch ${{ github.workspace }}/test.file ${{ github.workspace }}/test2.file ${{ github.workspace }}/testfolder1/test3.file ${{ github.workspace }}/testfolder1/testfolder2/test4.file
-          echo "old_string" > ${{ github.workspace }}/test.file
-          echo "old_string2" > ${{ github.workspace }}/test2.file
-          echo "old_string3" > ${{ github.workspace }}/testfolder1/test3.file
-          echo "old_string" > ${{ github.workspace }}/testfolder1/testfolder2/test4.file
-          echo "test.file: $(cat ${{ github.workspace }}/test.file)"
-          echo "test2.file: $(cat ${{ github.workspace }}/test2.file)"
-          echo "test3.file: $(cat ${{ github.workspace }}/testfolder1/test3.file)"
-          echo "test4.file: $(cat ${{ github.workspace }}/testfolder1/testfolder2/test4.file)"
+          echo "This is a test file 1" > ${{ github.workspace }}/test_file1.txt
+          echo "This is a test file 2" > ${{ github.workspace }}/test_file2.txt
         shell: bash
-      - name: replacing strings
-        id: replace
-        if: steps.setup.outcome == 'success'
+
+      - name: Custom Python Search and Replace
         uses: carefreepineapple/replace-in-files@main
         with:
-          directory: '/home/ansible'
-          pattern: '(.*\/)*test(\d)*\.file'
-          replacements_json: '[{"regex":"^old\\_word$","replacement":"new_word"}]'
-      - name: Confirm changes
-        if: steps.replace.outcome == 'success'
-        run: |
-          echo "test.file: $(cat ${{ github.workspace }}/test.file)"
-          echo "test2.file: $(cat ${{ github.workspace }}/test2.file)"
-          echo "test3.file: $(cat ${{ github.workspace }}/testfolder1/test3.file)"
-          echo "test4.file: $(cat ${{ github.workspace }}/testfolder1/testfolder2/test4.file)"
+          directory: '${{ github.workspace }}'
+          file_pattern: '^test_file.*\.txt$'
+          replacements_json: |
+            [
+              {"regex": "test", "replacement": "exam"},
+              {"regex": "This", "replacement": "that"},
+              {"regex": "file \\d+", "replacement": "file new number"}
+            ]
+          
