@@ -5,6 +5,7 @@ ChatGPT wrote this, I just provided guidance, testing, and minor bug fixes.  How
 Github action to replace multiple strings within files using regex.
 
 # Example usage
+the debug flag has a default setting of false.  When set to `true`, it will print the original and modified contents of the files that have matching content.
 ```
 - name: Custom Python Search and Replace
     uses: carefreepineapple/replace-in-files@main
@@ -17,6 +18,7 @@ Github action to replace multiple strings within files using regex.
                 {"regex": "This", "replacement": "that"},
                 {"regex": "file \\d+", "replacement": "file new number"}
             ]
+        debug: true
 ```
 
 # Example workflow
