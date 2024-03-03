@@ -27,20 +27,22 @@ def main():
                     with open(file_path, 'r') as f:
                         content = f.read()
 
+                    modified_content = content  # Initialize modified content
+
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            content = re.sub(regex, replacement, content)
+                            modified_content = re.sub(regex, replacement, modified_content)
 
-                    if content != "":
+                    if modified_content != content:  # Check if content was modified
                         print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
-                            f.write(content)
+                            f.write(modified_content)
 
                         print(f"Modified contents of {file_name}:")
-                        print(content)
+                        print(modified_content)
                     else:
                         print(f"No content replaced in {file_name}")
 
