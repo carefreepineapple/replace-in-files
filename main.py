@@ -33,6 +33,7 @@ def main():
                 if replacements_json:
                     with open(file_path, 'r') as f:
                         content = f.read()
+                    original_content = content  # Save original content for comparison
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
@@ -43,7 +44,7 @@ def main():
                         print(f"Modified contents of {file_name}:")
                         print(content)
 
-                    if not debug_mode:
+                    if original_content != content:  # Check if content was replaced
                         print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
