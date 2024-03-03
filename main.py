@@ -36,8 +36,8 @@ def main():
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            replaced_content, num_replacements = re.subn(regex, replacement, content)
-                            if num_replacements > 0:
+                            replaced_content = re.sub(regex, replacement, content)
+                            if replaced_content != content:
                                 content_replaced = True
                                 content = replaced_content
                                 if debug_mode:
