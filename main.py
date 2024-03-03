@@ -27,6 +27,8 @@ def main():
                     with open(file_path, 'r') as f:
                         content = f.read()
 
+                    content_replaced = False  # Flag to track if content was replaced
+
                     modified_content = content  # Initialize modified content
 
                     for rep in replacements_data:
@@ -34,8 +36,10 @@ def main():
                         replacement = rep.get('replacement')
                         if regex and replacement:
                             modified_content = re.sub(regex, replacement, modified_content)
+                            if modified_content != content:  # Check if content was replaced
+                                content_replaced = True
 
-                    if modified_content != content:  # Check if content was modified
+                    if content_replaced:
                         print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
