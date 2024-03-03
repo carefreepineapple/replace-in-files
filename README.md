@@ -1,3 +1,6 @@
+# disclaimer
+ChatGPT wrote this, I just provided guidance, testing, and minor bug fixes.  How does that affect the MIT license?  No clue, welcome to the wild west!
+
 # replace-in-files
 Github action to replace multiple strings within files using regex.
 
