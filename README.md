@@ -12,11 +12,11 @@ Github action to replace multiple strings within files using regex.
         directory: '${{ github.workspace }}'
         file_pattern: '^test_file.*\.txt$'
         replacements_json: |
-        [
-            {"regex": "test", "replacement": "exam"},
-            {"regex": "This", "replacement": "that"},
-            {"regex": "file \\d+", "replacement": "file new number"}
-        ]
+            [
+                {"regex": "test", "replacement": "exam"},
+                {"regex": "This", "replacement": "that"},
+                {"regex": "file \\d+", "replacement": "file new number"}
+            ]
 ```
 
 # Example workflow
