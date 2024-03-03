@@ -3,7 +3,8 @@ name: replace-in-files Workflow
 on:
   push:
      branches:
-     - main
+      - main
+      - dev
 
 jobs:
   hello_world_job:
