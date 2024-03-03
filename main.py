@@ -6,7 +6,6 @@ def main():
     directory = os.getenv('DIRECTORY')
     file_pattern = os.getenv('FILE_PATTERN')
     replacements_json = os.getenv('REPLACEMENTS_JSON')
-    debug_mode = os.getenv('DEBUG') == 'true'
 
     print(f"Directory: {directory}")
     print(f"File Pattern: {file_pattern}")
@@ -24,27 +23,29 @@ def main():
                 file_path = os.path.join(directory, file_name)
                 print(f"File matched: {file_path}")
 
-                if debug_mode:
-                    print(f"Original contents of: {file_name}:")
-                    with open(file_path, 'r') as f:
-                        content = f.read()
-                        print(content)
-
                 if replacements_json:
                     with open(file_path, 'r') as f:
                         content = f.read()
+
+                    modified_content = content  # Initialize modified content
+
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            content = re.sub(regex, replacement, content)
+                            modified_content = re.sub(regex, replacement, modified_content)
 
-                    if debug_mode:
-                        print(f"Modified contents of: {file_name}:")
-                        print(content)
+                    if modified_content != content:  # Check if content was replaced
+                        print(f"Content found and replaced in {file_name}")
 
-                    with open(file_path, 'w') as f:
-                        f.write(content)
+                        with open(file_path, 'w') as f:
+                            f.write(modified_content)
+
+                        print(f"Modified contents of {file_name}:")
+                        print(modified_content)
+                    else:
+                        print(f"No content replaced in {file_name}")
+
                 else:
                     print("No replacements provided.")
     except Exception as e:
