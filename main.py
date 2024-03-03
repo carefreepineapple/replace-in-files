@@ -26,34 +26,33 @@ def main():
                 print(f"File matched: {file_path}")
 
                 if debug_mode:
-                    print(f"Original contents of {file_name}:")
-                    with open(file_path, 'r') as f:
-                        content = f.read()
-                        print(content)
+                    print(f"Debug mode is enabled.")
 
                 if replacements_json:
                     with open(file_path, 'r') as f:
                         content = f.read()
-                    content_replaced = False  # Flag to track if content was replaced
+                    content_replaced = False
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
                             replaced_content, num_replacements = re.subn(regex, replacement, content)
-                            print(f"Number of replacements in {file_name}: {num_replacements}")
-                            if num_replacements > 0:  # Check if any replacements were made
+                            if num_replacements > 0:
                                 content_replaced = True
                                 content = replaced_content
-
-                    if debug_mode:
-                        print(f"Modified contents of {file_name}:")
-                        print(content)
 
                     if not debug_mode and content_replaced:
                         print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
                             f.write(content)
+                    elif debug_mode and content_replaced:
+                        print(f"Debug mode is enabled and content found and replaced in {file_name}")
+
+                    if debug_mode:
+                        print(f"Modified contents of {file_name}:")
+                        print(content)
+
                 else:
                     print("No replacements provided.")
     except Exception as e:
