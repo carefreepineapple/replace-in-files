@@ -1,4 +1,4 @@
-name: Search and Replace Workflow
+name: replace-in-files Workflow
 
 on:
   push:
