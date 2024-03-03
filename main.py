@@ -38,10 +38,11 @@ def main():
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            updated_content, num_replacements = re.subn(regex, replacement, content)
-                            if num_replacements > 0:
+                            original_occurrences = len(re.findall(regex, content))
+                            content = re.sub(regex, replacement, content)
+                            updated_occurrences = len(re.findall(regex, content))
+                            if updated_occurrences > original_occurrences:
                                 replaced = True
-                            content = updated_content
 
                     if debug_mode:
                         print(f"Modified contents of: {file_name}:")
