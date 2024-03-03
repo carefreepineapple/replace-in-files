@@ -6,6 +6,7 @@ def main():
     directory = os.getenv('DIRECTORY')
     file_pattern = os.getenv('FILE_PATTERN')
     replacements_json = os.getenv('REPLACEMENTS_JSON')
+    debug_mode = os.getenv('DEBUG') == 'true'
 
     print(f"Directory: {directory}")
     print(f"File Pattern: {file_pattern}")
@@ -21,20 +22,24 @@ def main():
         for file_name in os.listdir(directory):
             if re.match(file_pattern, file_name):
                 file_path = os.path.join(directory, file_name)
-                print(f"Original contents of: {file_name}:")
-                with open(file_path, 'r') as f:
-                    content = f.read()
-                    print(content)
+                if debug_mode:
+                    print(f"Original contents of: {file_name}:")
+                    with open(file_path, 'r') as f:
+                        content = f.read()
+                        print(content)
 
                 if replacements_json:
+                    with open(file_path, 'r') as f:
+                        content = f.read()
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
                             content = re.sub(regex, replacement, content)
 
-                    print(f"Modified contents of: {file_name}:")
-                    print(content)
+                    if debug_mode:
+                        print(f"Modified contents of: {file_name}:")
+                        print(content)
 
                     with open(file_path, 'w') as f:
                         f.write(content)
