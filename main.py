@@ -39,7 +39,9 @@ def main():
                         replacement = rep.get('replacement')
                         if regex and replacement:
                             original_content = content
+                            print(content)
                             content = re.sub(regex, replacement, content)
+                            print(content)
                             if original_content != content:
                                 replaced = True
 
