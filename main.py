@@ -25,9 +25,6 @@ def main():
                 file_path = os.path.join(directory, file_name)
                 print(f"File matched: {file_path}")
 
-                if debug_mode:
-                    print(f"Debug mode is enabled.")
-
                 if replacements_json:
                     with open(file_path, 'r') as f:
                         content = f.read()
@@ -40,11 +37,11 @@ def main():
                             if replaced_content != content:
                                 content_replaced = True
                                 content = replaced_content
-                                if debug_mode:
-                                    print(f"Content found and replaced in {file_name}")
+                                print(f"Content found and replaced in {file_name}")
 
                     if not debug_mode and content_replaced:
-                        print(f"Content found and replaced in {file_name}")
+                        print(f"Modified contents of {file_name}:")
+                        print(content)
 
                         with open(file_path, 'w') as f:
                             f.write(content)
