@@ -25,7 +25,7 @@ def main():
                 print(f"File matched: {file_path}")
 
                 if debug_mode:
-                    print(f"Original contents of: {file_name}:")
+                    print(f"Original contents of {file_name}:")
                     with open(file_path, 'r') as f:
                         content = f.read()
                         print(content)
@@ -39,17 +39,15 @@ def main():
                         replacement = rep.get('replacement')
                         if regex and replacement:
                             original_content = content
-                            print(content)
                             content = re.sub(regex, replacement, content)
-                            print(content)
                             if original_content != content:
                                 replaced = True
 
                     if debug_mode:
-                        print(f"Modified contents of: {file_name}:")
+                        print(f"Modified contents of {file_name}:")
                         print(content)
 
-                    if not debug_mode and replaced:
+                    if not debug_mode:
                         print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
