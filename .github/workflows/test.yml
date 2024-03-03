@@ -31,5 +31,4 @@ jobs:
               {"regex": "This", "replacement": "that"},
               {"regex": "file \\d+", "replacement": "file new number"}
             ]
-          debug: false
           
