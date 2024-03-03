@@ -14,6 +14,9 @@ def main():
     try:
         if replacements_json:
             replacements_data = json.loads(replacements_json)
+            print(f"Replacements JSON (raw): {replacements_data}")
+            print(f"Type of replacements_json: {type(replacements_json)}")
+            print(f"Type of replacements after JSON parsing: {type(replacements_data)}")
 
             if not isinstance(replacements_data, list):
                 raise ValueError("Replacements data must be a list")
