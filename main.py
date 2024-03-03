@@ -38,8 +38,8 @@ def main():
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            replaced_content = re.sub(regex, replacement, content)
-                            if replaced_content != content:  # Check if content was replaced
+                            replaced_content, num_replacements = re.subn(regex, replacement, content)
+                            if num_replacements > 0:  # Check if any replacements were made
                                 content_replaced = True
                                 content = replaced_content
 
@@ -47,7 +47,7 @@ def main():
                         print(f"Modified contents of {file_name}:")
                         print(content)
 
-                    if content_replaced:  # Print message only if content was replaced
+                    if not debug_mode and content_replaced:
                         print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
