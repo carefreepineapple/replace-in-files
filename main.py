@@ -33,11 +33,18 @@ def main():
                 if replacements_json:
                     with open(file_path, 'r') as f:
                         content = f.read()
+                    modified = False
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            content = re.sub(regex, replacement, content)
+                            replaced_content, count = re.subn(regex, replacement, content)
+                            if count > 0:
+                                modified = True
+                                content = replaced_content
+
+                    if modified and not debug_mode:
+                        print(f"Content was found and replaced in: {file_name}")
 
                     if debug_mode:
                         print(f"Modified contents of {file_name}:")
