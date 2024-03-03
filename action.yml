@@ -1,6 +1,6 @@
 name: 'Custom Python Search and Replace'
 description: 'Performs search and replace operations in files using Python'
-author: 'Your Name'
+author: 'ChatGPT'
 inputs:
   directory:
     description: 'The directory to search for test files'

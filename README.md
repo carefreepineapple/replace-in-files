@@ -1,5 +1,5 @@
 # replace-in-files
-github action to replace multiple strings within files using regex.
+Github action to replace multiple strings within files using regex.
 
 # Example usage
 ```
@@ -17,4 +17,4 @@ github action to replace multiple strings within files using regex.
 ```
 
 # Example workflow
-this repo uses an example workflow. https://github.com/carefreepineapple/replace-in-files/actions
+This repo uses an example workflow. https://github.com/carefreepineapple/replace-in-files/actions

@@ -24,7 +24,7 @@ def main():
         for file_name in os.listdir(directory):
             if re.match(file_pattern, file_name):
                 file_path = os.path.join(directory, file_name)
-                print(f"Original contents of {file_name}:")
+                print(f"Original contents of: {file_name}:")
                 with open(file_path, 'r') as f:
                     content = f.read()
                     print(content)
@@ -36,7 +36,7 @@ def main():
                         if regex and replacement:
                             content = re.sub(regex, replacement, content)
 
-                    print(f"Modified contents of {file_name}:")
+                    print(f"Modified contents of: {file_name}:")
                     print(content)
 
                     with open(file_path, 'w') as f:
