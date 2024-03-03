@@ -38,10 +38,9 @@ def main():
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            original_occurrences = len(re.findall(regex, content))
+                            original_content = content
                             content = re.sub(regex, replacement, content)
-                            updated_occurrences = len(re.findall(regex, content))
-                            if updated_occurrences > original_occurrences:
+                            if original_content != content:
                                 replaced = True
 
                     if debug_mode:
