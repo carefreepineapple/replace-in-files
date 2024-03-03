@@ -6,12 +6,10 @@ def main():
     directory = os.getenv('DIRECTORY')
     file_pattern = os.getenv('FILE_PATTERN')
     replacements_json = os.getenv('REPLACEMENTS_JSON')
-    debug_mode = os.getenv('DEBUG') == 'true'
 
     print(f"Directory: {directory}")
     print(f"File Pattern: {file_pattern}")
     print(f"Replacements JSON: {replacements_json}")
-    print(f"Debug Mode: {debug_mode}")
 
     try:
         if replacements_json:
@@ -28,27 +26,23 @@ def main():
                 if replacements_json:
                     with open(file_path, 'r') as f:
                         content = f.read()
-                    content_replaced = False
+
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
                         if regex and replacement:
-                            replaced_content = re.sub(regex, replacement, content)
-                            if replaced_content != content:
-                                content_replaced = True
-                                content = replaced_content
-                                print(f"Content found and replaced in {file_name}")
+                            content = re.sub(regex, replacement, content)
 
-                    if not debug_mode and content_replaced:
-                        print(f"Modified contents of {file_name}:")
-                        print(content)
+                    if content != "":
+                        print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
                             f.write(content)
 
-                    if debug_mode:
                         print(f"Modified contents of {file_name}:")
                         print(content)
+                    else:
+                        print(f"No content replaced in {file_name}")
 
                 else:
                     print("No replacements provided.")
