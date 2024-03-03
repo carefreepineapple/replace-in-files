@@ -33,7 +33,6 @@ def main():
                 if replacements_json:
                     with open(file_path, 'r') as f:
                         content = f.read()
-                    replaced = False
                     for rep in replacements_data:
                         regex = rep.get('regex')
                         replacement = rep.get('replacement')
