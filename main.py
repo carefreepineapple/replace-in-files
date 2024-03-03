@@ -40,14 +40,14 @@ def main():
                             if num_replacements > 0:
                                 content_replaced = True
                                 content = replaced_content
+                                if debug_mode:
+                                    print(f"Content found and replaced in {file_name}")
 
                     if not debug_mode and content_replaced:
                         print(f"Content found and replaced in {file_name}")
 
                         with open(file_path, 'w') as f:
                             f.write(content)
-                    elif debug_mode and content_replaced:
-                        print(f"Debug mode is enabled and content found and replaced in {file_name}")
 
                     if debug_mode:
                         print(f"Modified contents of {file_name}:")
