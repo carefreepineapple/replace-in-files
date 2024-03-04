@@ -27,7 +27,7 @@ jobs:
         shell: bash
 
       - name: Custom Python Search and Replace
-        uses: carefreepineapple/replace-in-files@main
+        uses: carefreepineapple/replace-in-files@v1.0
         with:
           directory: '${{ github.workspace }}'
           file_pattern: '^test\_.*\.txt$'
