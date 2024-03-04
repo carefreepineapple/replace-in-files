@@ -5,11 +5,14 @@ ChatGPT wrote this, I just provided guidance, testing, and minor bug fixes.  How
 Github action to replace multiple strings within files using regex.
 
 # usage notes
+## debug
 the debug flag has a default setting of false, so it does not need to be specified except when `true`.  When set to `true`, it will print the original and modified contents of the files that have matching content.
 
-be mindful as its needed to escape the escape, ie. you want to escape an underscore: `\\_`
-
+## recursive
 the recursive flag has a default setting of `true`, so it will recursively search through child directories, within the specified directory, for matching files.  Set this to `false` if you do not want a recursive search.
+
+## regex notes
+be mindful as its needed to escape the escape, ie. you want to escape an underscore: `\\_`
 
 # example usage
 ```
