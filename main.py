@@ -12,6 +12,7 @@ def main():
     print(f"Directory: {directory}")
     print(f"File Pattern: {file_pattern}")
     print(f"Replacements JSON: {replacements_json}")
+    print(f"Debug Mode: {debug_mode}")
     print(f"Recursive Search: {recursive_search}")
 
     try:
