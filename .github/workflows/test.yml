@@ -33,9 +33,9 @@ jobs:
               {"regex": "test", "replacement": "exam"},
               {"regex": "This", "replacement": "that"},
               {"regex": "file \\d+", "replacement": "file new number"},
-              {"regex": "TEST\_USER\=.*", "replacement": "TEST_USER=NEWUSER"},
-              {"regex": "TEST\_PASS\=.*", "replacement": "TEST_PASS=NEWPASS"},
-              {"regex": "TEST\_HOST\=.*", "replacement": "TEST_HOST=NEWHOST"},
-              {"regex": "TEST\_DB\=.*", "replacement": "TEST_DB=NEWDATABASE"}
+              {"regex": "TEST\\_USER\\=.*", "replacement": "TEST_USER=NEWUSER"},
+              {"regex": "TEST\\_PASS\\=.*", "replacement": "TEST_PASS=NEWPASS"},
+              {"regex": "TEST\\_HOST\\=.*", "replacement": "TEST_HOST=NEWHOST"},
+              {"regex": "TEST\\_DB\\=.*", "replacement": "TEST_DB=NEWDATABASE"}
             ]
           debug: true
