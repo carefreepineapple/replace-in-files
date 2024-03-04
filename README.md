@@ -9,6 +9,8 @@ the debug flag has a default setting of false, so it does not need to be specifi
 
 be mindful as its needed to escape the escape, ie. you want to escape an underscore: `\\_`
 
+the recursive flag has a default setting of `true`, so it will recursively search through child directories, within the specified directory, for matching files.  Set this to `false` if you do not want a recursive search.
+
 # example usage
 ```
 - name: Custom Python Search and Replace
@@ -23,6 +25,7 @@ be mindful as its needed to escape the escape, ie. you want to escape an undersc
                 {"regex": "file \\d+", "replacement": "file new number"}
             ]
         debug: true
+        recursive: true
 ```
 
 # example workflow
