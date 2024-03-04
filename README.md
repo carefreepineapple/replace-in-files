@@ -12,7 +12,9 @@ the debug flag has a default setting of false, so it does not need to be specifi
 the recursive flag has a default setting of `true`, so it will recursively search through child directories, within the specified directory, for matching files.  Set this to `false` if you do not want a recursive search.
 
 ## regex notes
-be mindful as its needed to escape the escape, ie. you want to escape an underscore: `\\_`
+* be mindful as its needed to escape the escape, ie. you want to escape an underscore: `\\_`
+* `file_pattern` is only searching file names, it cannot account for parent directories.  ie. if you wanted to only search for files in certain (multiple) parent directories.
+
 
 # example usage
 ```
