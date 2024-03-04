@@ -17,7 +17,7 @@ be mindful as its needed to escape the escape, ie. you want to escape an undersc
 # example usage
 ```
 - name: Custom Python Search and Replace
-    uses: carefreepineapple/replace-in-files@main
+    uses: carefreepineapple/replace-in-files@v1.0
     with:
         directory: '${{ github.workspace }}'
         file_pattern: '^test_file.*\.txt$'
