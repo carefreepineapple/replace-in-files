@@ -17,17 +17,25 @@ jobs:
         run: |
           echo "This is a test file 1" > ${{ github.workspace }}/test_file1.txt
           echo "This is a test file 2" > ${{ github.workspace }}/test_file2.txt
+          echo "TEST_USER=USER" >> ${{ github.workspace }}/test_data.txt
+          echo "TEST_PASS=PASS" >> ${{ github.workspace }}/test_data.txt
+          echo "TEST_HOST=LOCALHOST" >> ${{ github.workspace }}/test_data.txt
+          echo "TEST_DB=DATABASE" >> ${{ github.worksace }}/test_data.txt
         shell: bash
 
       - name: Custom Python Search and Replace
         uses: carefreepineapple/replace-in-files@main
         with:
           directory: '${{ github.workspace }}'
-          file_pattern: '^test_file.*\.txt$'
+          file_pattern: '^test\_.*\.txt$'
           replacements_json: |
             [
               {"regex": "test", "replacement": "exam"},
               {"regex": "This", "replacement": "that"},
-              {"regex": "file \\d+", "replacement": "file new number"}
+              {"regex": "file \\d+", "replacement": "file new number"},
+              {"regex": "TEST\_USER\=.*", "replacement": "TEST_USER=NEWUSER"},
+              {"regex": "TEST\_PASS\=.*", "replacement": "TEST_PASS=NEWPASS"},
+              {"regex": "TEST\_HOST\=.*", "replacement": "TEST_HOST=NEWHOST"},
+              {"regex": "TEST\_DB\=.*", "replacement": "TEST_DB=NEWDATABASE"}
             ]
           debug: true
