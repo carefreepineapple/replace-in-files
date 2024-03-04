@@ -15,6 +15,10 @@ inputs:
     description: 'Enable debug mode to print original and modified contents of files'
     required: false
     default: false
+  recursive:
+    description: 'Control recursive searching for files from the directory'
+    required: false
+    default: true
 runs:
   using: 'composite'
   steps:
@@ -29,6 +33,7 @@ runs:
         REPLACEMENTS_JSON: ${{ inputs.replacements_json }}
         FILE_PATTERN: ${{ inputs.file_pattern }}
         DEBUG: ${{ inputs.debug }}
+        RECURSIVE_SEARCH: ${{ inputs.recursive }}
       run: |
         echo "$REPLACEMENTS_JSON" > replacements.json
         python $GITHUB_ACTION_PATH/main.py

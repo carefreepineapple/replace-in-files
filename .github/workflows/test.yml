@@ -42,3 +42,4 @@ jobs:
               {"regex": "TEST\\_DB\\=.*", "replacement": "TEST_DB=NEWDATABASE"}
             ]
           debug: true
+          recursive: true
