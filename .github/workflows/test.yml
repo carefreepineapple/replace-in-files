@@ -20,7 +20,7 @@ jobs:
           echo "TEST_USER=USER" >> ${{ github.workspace }}/test_data.txt
           echo "TEST_PASS=PASS" >> ${{ github.workspace }}/test_data.txt
           echo "TEST_HOST=LOCALHOST" >> ${{ github.workspace }}/test_data.txt
-          echo "TEST_DB=DATABASE" >> ${{ github.worksace }}/test_data.txt
+          echo "TEST_DB=DATABASE" >> ${{ github.workspace }}/test_data.txt
         shell: bash
 
       - name: Custom Python Search and Replace
